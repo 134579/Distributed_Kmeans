@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="kmeans distributed" default="run" basedir=".">
+	<property name="src" value="src"/>
+	<property name="dest" value="bin"/>
+	<property name="local_kmeans_jar" value="dis kmeans.jar"/>
+
+	<target name="init">
+		<mkdir dir="${dest}"/>
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${dest}" includeantruntime="false"/>
+	</target>
+	
+	<target name="build" depends="compile" >
+		<jar jarfile="${local_kmeans_jar}" basedir="${dest}" />
+	</target>
+
+	<target name="run" depends="compile">
+		<java classname="hk.Run" classpath="${local_kmeans_jar}">
+	<!--	<arg value="abs.txt"/>
+		<arg value="aerosol.txt"/>-->
+		<arg value="text1"/>
+		<arg value="text2"/>
+		<arg value="text3"/>
+		<arg value="text4"/>
+		</java>
+	</target>
+
+	<target name="clean">
+		<delete dir="${dest}"/>
+	</target>
+</project>
